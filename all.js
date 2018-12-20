@@ -1,3 +1,11 @@
+var UserModule;
+(function (UserModule) {
+    UserModule.name = "taguchi";
+    var AddressModule;
+    (function (AddressModule) {
+        AddressModule.zip = "111-1111";
+    })(AddressModule = UserModule.AddressModule || (UserModule.AddressModule = {}));
+})(UserModule || (UserModule = {}));
 // ---------------#03---------------------------
 /* 変数の静的型付け　<> 動的型付け
 
@@ -10,9 +18,7 @@ var x: number = 10;
 x = "hello";
 
 */
-
 // ---------------#04---------------------------
-
 // 型
 /*
 number
@@ -31,7 +37,6 @@ var results: number[];
 results = [10, 5, 3];
 
 */
-
 // ---------------#05---------------------------
 /* 列挙型
 Signal
@@ -61,7 +66,6 @@ console.log(Signal[2]); // Yellow
 console.log(Signal[3]); // Blue
 console.log(Signal.Green); // 5
 */
-
 // ---------------#06---------------------------
 // 関数
 /*
@@ -97,7 +101,6 @@ console.log(add(5, "hello"));
 console.log(add(5, 3));
 console.log(add(5));
 */
-
 // ---------------#07---------------------------
 /* 関数
 var add = function(a: number,b: number): number {
@@ -114,7 +117,6 @@ var add = (a: number,b: number): number => a + b
 
 console.log(add(5, 3))
 */
-
 // ---------------#08---------------------------
 /*
 // 関数のオーバーロード：引数や戻り値が異なる、同じ名前の関数を宣言すること
@@ -137,7 +139,6 @@ console.log(add("hello", "world")); // hello world
 console.log(add("hello", 3));
 
 */
-
 // ---------------#09---------------------------
 /*
 クラス
@@ -163,7 +164,6 @@ console.log(tom.name);
 tom.sayHi();
 
 */
-
 // ---------------#10---------------------------
 /*
 クラス、ゲッターセッター
@@ -189,7 +189,6 @@ tom.name = "TOM";
 console.log(tom.name);
 tom.sayHi();
 */
-
 // ---------------#11---------------------------
 /*
 クラス、ゲッターセッター
@@ -223,7 +222,6 @@ class AdminUser extends User {
 var bob = new AdminUser("Bob", 23);
 bob.sayHi();
 */
-
 // ---------------#12---------------------------
 /*
 静的メンバ: インスタンスではなく、クラス内に持つ。ここではcountが静的メンバ
@@ -253,7 +251,6 @@ console.log(User.count);
 User.showDescription(); // インスタンスを生成しなくても実行できる。
 
 */
-
 // ---------------#13---------------------------
 /*
 Interface: オブジェクトの型に名前をつけるための機能
@@ -276,9 +273,7 @@ var result = {
 console.log(getTotal(result));
 
 */
-
 // ---------------#14---------------------------
-
 /*
 Interfaceの継承
 
@@ -323,7 +318,6 @@ var result = {
 console.log(getTotal(result));
 
 */
-
 // ---------------#15---------------------------
 /*
 Interface -> Classq
@@ -347,7 +341,6 @@ class User implements GameUser {
     }
 }
 */
-
 // ---------------#16---------------------------
 /*
 Generics: 抽象化されたデータ型
@@ -370,7 +363,6 @@ console.log(getArray<number>(3));
 console.log(getArray<string>("hello"));
 
 */
-
 // ---------------#17---------------------------
 /*
 Generics
@@ -409,7 +401,6 @@ var v4 = new MyData<FinalResult>({a: 32, b: 16, c: "hello"});
 console.log(v4.getArray());
 
 */
-
 // ---------------#18---------------------------
 /*
 内部モジュール
@@ -425,29 +416,9 @@ module UserModule {
 }
 
 tsc main.ts --out all.js コンパイル後のファイルを１つにまとめる。
-
+*/
 /// <reference path="./user.ts" />
-
 console.log(UserModule.name);
 // console.log(UserModule.AddressModule.zip);
-import addr = UserModule.AddressModule;
+var addr = UserModule.AddressModule;
 console.log(addr.zip);
-
-*/
-
-// ---------------#19---------------------------
-/*
-外部モジュール
-Node - CommonJS
-RequireJS - AMD
-
-
-// module UserModule {
-//     export var name = "taguchi";
-// }
-
-// import User = require("./user_commonjs");
-import User = require("./user_amd");
-console.log(User.name);
-
-*/
